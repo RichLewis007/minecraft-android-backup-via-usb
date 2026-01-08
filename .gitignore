@@ -1,0 +1,27 @@
+# Cache files
+*.cache
+/tmp/minecraft-worlds-cache.txt
+
+# Backup directories (user data, shouldn't be in repo)
+Minecraft-Worlds-Backups/
+~/Downloads/Minecraft-Worlds-Backups/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
