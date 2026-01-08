@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # minecraft-android-backup-via-usb.sh
 #
+# Version: 1.1
 # Author: Rich Lewis - GitHub @RichLewis007
 #
 # Minecraft Bedrock Android Backup Tool via USB (using ADB)
@@ -213,6 +214,9 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP_SCRIPT="${SCRIPT_DIR}/minecraft-android-backup-via-usb.sh"
+
+# Version
+SCRIPT_VERSION="1.1"
 
 # Configuration
 ADB_BIN="adb"
@@ -988,7 +992,7 @@ handler_clear_cache() {
 # ============================================================
 
 main_menu() {
-  ui_run_page "Minecraft Bedrock Backup Tool" \
+  ui_run_page "Minecraft Bedrock Backup Tool (v${SCRIPT_VERSION})" \
     "List Minecraft Worlds - Show all worlds and backup individually::handler_list_worlds" \
     "Backup All Worlds - Backup all worlds at once::handler_backup_all" \
     "Open Backup Folder - Open the backup folder in Finder::handler_open_backup_folder" \
