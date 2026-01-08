@@ -2,11 +2,11 @@
 
 **Author:** Rich Lewis - [GitHub @RichLewis007](https://github.com/RichLewis007)
 
-Easily backup your complete Minecraft Bedrock Edition worlds from your Android device to your computer via USB connection. This script uses ADB (Android Debug Bridge) to access protected app data directories and provides a user-friendly Text User Interface (TUI) for managing your Minecraft world backups.
+Easily backup your complete Minecraft Bedrock Edition worlds from your Android device to your computer via USB connection. This script uses ADB (Android Debug Bridge) to access protected app data directories and provides a user-friendly Text User Interface (TUI) for managing your Minecraft world backups. Worlds can be backed up as full folders or as .mcworld files.
 
 ## Overview
 
-**Minecraft-Android-Backup-Via-USB** is a comprehensive backup solution for Minecraft Bedrock Edition worlds stored on Android devices. The script connects to your Android device over USB using ADB, discovers all your Minecraft worlds, and provides an intuitive menu system to backup individual worlds or all worlds at once.
+**Minecraft-Android-Backup-Via-USB** is a comprehensive backup solution for Minecraft Bedrock Edition worlds stored on Android devices. The script connects to your Android device over USB using ADB, discovers all your Minecraft worlds, and provides an intuitive menu system to backup individual worlds or all worlds at once. You can choose to backup worlds as full folders or as .mcworld files.
 
 ### Why This Tool Exists
 

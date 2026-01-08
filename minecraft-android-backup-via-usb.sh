@@ -22,7 +22,7 @@
 #
 #   The script discovers all Minecraft worlds on your device, displays them with
 #   their actual names (read from levelname.txt), and allows you to backup them
-#   individually or all at once in two different formats.
+#   individually or all at once as full folders or as .mcworld files.
 #
 # FEATURES:
 #   Interactive Menu System:
