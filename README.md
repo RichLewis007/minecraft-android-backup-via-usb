@@ -29,13 +29,13 @@ Android's Scoped Storage system protects app data directories (including Minecra
 
 The script provides a menu-driven interface that allows you to:
 
+<img align="right" width="400" src="images/minecraft-backup-right-aligned.png" alt="Minecraft Backup">
+
 1. **Discover Worlds**: Automatically finds all Minecraft worlds on your Android device
 2. **Display Information**: Shows actual world names (not just folder IDs) and sorts by most recently played
 3. **Selective Backups**: Choose individual worlds to backup or backup everything at once
 4. **Format Choice**: Export as complete world folders or portable .mcworld files
 5. **Manage Backups**: View backup location, clear cache, and organize your backups
-
-<img align="right" width="400" src="images/minecraft-backup-right-aligned.png" alt="Minecraft Backup">
 
 ## Features
 
