@@ -1,63 +1,218 @@
 #!/usr/bin/env bash
-# minecraft-backup-via-adb.sh
+# minecraft-android-backup-via-usb.sh
 #
 # Author: Rich Lewis - GitHub @RichLewis007
 #
-# TUI (Text User Interface) for Minecraft Bedrock Android backup script
+# Minecraft Bedrock Android Backup Tool via USB (using ADB)
+# =========================================================
 #
-# Description:
-#   This script provides an interactive menu-driven interface for backing up
-#   Minecraft Bedrock worlds from an Android device via ADB (Android Debug Bridge).
-#   It allows users to selectively backup individual worlds or all worlds at once,
-#   in either "as-is" directory format or as .mcworld files (zipped format).
+# DESCRIPTION:
+#   Easily backup your complete Minecraft Bedrock Edition worlds from an Android
+#   device to your computer using an interactive Text User Interface (TUI).
+#   The connection is made via USB cable using ADB (Android Debug Bridge), which
+#   provides the elevated system permissions needed to access protected app data
+#   directories on Android devices.
 #
-# Features:
-#   - Interactive menu system (supports fzf/gum/basic menu fallback)
-#   - Lists all Minecraft worlds from the Android device
-#   - Displays world names from levelname.txt files
-#   - Backup individual worlds with format choice:
-#     * World folders: Full directory structure with descriptive names
-#       (format: <world-name>_<world-id>)
-#     * .mcworld files: Zipped world archives ready for import
-#   - Backup all worlds at once with format choice
-#   - Automatic path detection (tries primary path, falls back to alternative)
-#   - Progress indicators with spinners for long operations
-#   - Organized backup directory structure with timestamps
+#   Why ADB and USB?
+#   - Android Scoped Storage protects app data directories (including Minecraft worlds)
+#   - These directories cannot be accessed through normal file browsing or MTP
+#   - ADB provides system-level access to read protected directories
+#   - USB connection ensures reliable, fast data transfer for large world files
+#   - ADB over USB is the standard method for accessing Android app data
 #
-# Requirements:
-#   - ADB (Android Debug Bridge) installed and in PATH
-#   - Android device connected via USB with USB debugging enabled
-#   - zip command (for .mcworld export)
-#   - Optional: fzf or gum for enhanced menu experience (falls back to basic select if not available)
+#   The script discovers all Minecraft worlds on your device, displays them with
+#   their actual names (read from levelname.txt), and allows you to backup them
+#   individually or all at once in two different formats.
 #
-# Usage:
-#   ./minecraft-backup-via-adb.sh
+# FEATURES:
+#   Interactive Menu System:
+#     - Auto-detects available menu tools (fzf > gum > basic select)
+#     - fzf: Fuzzy finder with search-as-you-type (best experience)
+#     - gum: Modern terminal UI library (good experience)
+#     - Basic select: Built-in bash select (works everywhere)
 #
-# Configuration:
-#   - MINECRAFT_WORLDS_PATH: Primary path to Minecraft worlds on Android
-#   - MINECRAFT_WORLDS_ALT_PATH: Alternative path (used as fallback)
-#   - BACKUP_BASE_DIR: Base directory for backups (default: ~/Downloads/Minecraft-Worlds-Backups)
+#   World Discovery & Display:
+#     - Automatically finds all Minecraft worlds on your Android device
+#     - Reads world names from levelname.txt files (shows actual names, not folder IDs)
+#     - Retrieves access times to sort worlds by most recently played
+#     - Caches world list for 5 minutes to speed up subsequent operations
 #
-# Backup Directory Structure:
+#   Backup Options:
+#     - Individual backups: Select specific worlds one at a time
+#     - Bulk backups: Backup all worlds at once
+#     - Two backup formats:
+#       * World Folders: Complete directory structure preserved
+#         - Format: <world-name>__<world-id>/
+#         - Includes all world files (level.dat, levelname.txt, chunks, etc.)
+#         - Useful for manual inspection, editing, or advanced use cases
+#         - Preserves exact directory structure from device
+#       * .mcworld Files: Zipped archives ready for Minecraft import
+#         - Format: <world-name>.mcworld
+#         - Standard Minecraft world archive format
+#         - Can be double-clicked to import directly into Minecraft
+#         - Portable single-file format
+#
+#   Technical Features:
+#     - Automatic path detection: Tries primary Android storage path, falls back
+#       to alternative paths automatically
+#     - Progress indicators: Spinner animations during long operations
+#     - Organized backup structure: Timestamps and descriptive folder names
+#     - Cache management: Automatic expiration and manual clearing
+#     - Error handling: Graceful fallbacks and clear error messages
+#     - macOS integration: Automatically opens Finder to backup location
+#
+# REQUIREMENTS:
+#   Required:
+#     - ADB (Android Debug Bridge) - Install via:
+#       * Homebrew: brew install android-platform-tools
+#       * MacPorts: sudo port install android-platform-tools
+#     - zip command (for .mcworld export) - Install via:
+#       * Homebrew: brew install zip
+#       * MacPorts: sudo port install zip
+#     - Android device connected via USB cable
+#     - USB Debugging enabled on Android device
+#       (Settings > Developer Options > USB Debugging)
+#
+#   Optional (for enhanced menu experience):
+#     - fzf: Fuzzy finder (recommended) - brew install fzf
+#     - gum: Modern terminal UI - brew install gum
+#     - If neither is installed, script uses basic bash select menu
+#
+# USAGE:
+#   ./minecraft-android-backup-via-usb.sh
+#
+#   The script will:
+#   1. Check if ADB is installed and accessible
+#   2. Verify an Android device is connected via USB
+#   3. Display an interactive main menu
+#   4. Allow you to browse, select, and backup your Minecraft worlds
+#
+# CONFIGURATION:
+#   These variables can be modified in the script (see Configuration section):
+#
+#   MINECRAFT_WORLDS_PATH:
+#     Primary path to Minecraft worlds on Android device
+#     Default: /storage/emulated/0/Android/data/com.mojang.minecraftpe/files/games/com.mojang/minecraftWorlds
+#
+#   MINECRAFT_WORLDS_ALT_PATH:
+#     Alternative path used if primary path is not accessible
+#     Default: /sdcard/Android/data/com.mojang.minecraftpe/files/games/com.mojang/minecraftWorlds
+#
+#   BACKUP_BASE_DIR:
+#     Base directory where backups are saved on your computer
+#     Default: ~/Downloads/Minecraft-Worlds-Backups
+#
+#   WORLD_LIST_CACHE_FILE:
+#     Location of the cached world list file
+#     Default: ${TMPDIR:-/tmp}/minecraft-worlds-cache.txt
+#     Cache expires automatically after 5 minutes
+#
+# BACKUP DIRECTORY STRUCTURE:
+#   Backups are organized by format and timestamp:
+#
 #   ~/Downloads/Minecraft-Worlds-Backups/
 #   ├── world-folders/
-#   │   └── <timestamp>/
-#   │       └── <world-name>_<world-id>/
+#   │   └── <world-name>__<timestamp>/
+#   │       └── <world-name>__<world-id>/
+#   │           ├── levelname.txt
+#   │           ├── level.dat
+#   │           ├── world_icon.jpeg
+#   │           └── ... (all world files)
+#   └── mcworld-files/
+#       └── <world-name>__<timestamp>/
+#           ├── <world-name>.mcworld
+#           └── world_icon.jpeg
+#
+#   Example:
+#   ~/Downloads/Minecraft-Worlds-Backups/
+#   ├── world-folders/
+#   │   └── My-Survival-World__2024-01-15__02-30-45-PM/
+#   │       └── My-Survival-World__ABC123DEF456/
 #   │           └── (world files)
 #   └── mcworld-files/
-#       └── <timestamp>/
-#           └── <world-name>.mcworld
+#       └── My-Creative-World__2024-01-15__02-30-45-PM/
+#           └── My-Creative-World.mcworld
 #
-# Notes:
+# HOW IT WORKS:
+#   1. Path Detection:
+#      - Attempts to access primary Minecraft worlds path
+#      - If primary path fails, automatically tries alternative path
+#      - Handles different Android storage configurations
+#
+#   2. World Discovery:
+#      - Lists all directories in Minecraft worlds folder via ADB
+#      - For each directory, reads levelname.txt to get actual world name
+#      - Retrieves file access time (atime) for sorting
+#      - Builds array of worlds with IDs, names, and access times
+#      - Sorts worlds by access time (most recently played first)
+#
+#   3. Caching:
+#      - World list is cached to temporary file for 5 minutes
+#      - Subsequent operations use cached data if available and fresh
+#      - Cache automatically expires after 5 minutes
+#      - Cache can be manually cleared via menu option
+#      - Cache includes world IDs and names (not file contents)
+#
+#   4. Backup Process:
+#      World Folders:
+#      - Creates timestamped directory for this backup session
+#      - Sanitizes world name (replaces special chars with dashes)
+#      - Uses ADB pull to copy entire world directory structure
+#      - Copies world icon to backup directory if available
+#
+#      .mcworld Files:
+#      - Pulls world to temporary directory via ADB
+#      - Creates zip archive in .mcworld format
+#      - Removes temporary directory after zip creation
+#      - Copies world icon to backup directory if available
+#
+#   5. Menu Navigation:
+#      - Uses pick_option() function to display menus
+#      - Automatically detects best available menu tool
+#      - fzf/gum: Arrow keys to navigate, type to filter
+#      - Basic select: Number keys to select
+#
+# NOTES & BEST PRACTICES:
 #   - Close Minecraft app before backing up for best consistency
-#   - World names are sanitized for folder names (spaces/special chars -> dashes)
-#   - The script tries both /sdcard/... and /storage/emulated/0/... paths automatically
-#   - Menu navigation: Arrow keys (with fzf/gum) or type to search/filter
+#     (Prevents file locks and ensures complete backups)
+#   - Keep device connected via USB during entire backup process
+#   - USB Debugging must remain enabled throughout
+#   - World names are sanitized for filesystem compatibility
+#     (Spaces and special characters become dashes)
+#   - Access time sorting may vary depending on Android version
+#     (Some Android versions don't update access times reliably)
+#   - Cache is per-user (stored in user's temp directory)
+#   - Backups preserve exact file structure from device
+#   - .mcworld files are standard Minecraft format and can be shared
+#
+# TECHNICAL DETAILS:
+#   - Uses bash strict mode (set -euo pipefail)
+#   - All ADB commands are prefixed with proper path handling
+#   - Spinner implementation shows progress during long operations
+#   - Error handling includes graceful fallbacks at each step
+#   - File operations use safe path handling and temporary files
+#   - Menu system supports both interactive and non-interactive environments
+#
+# TROUBLESHOOTING:
+#   See README.md for comprehensive troubleshooting guide covering:
+#   - ADB connection issues
+#   - Device not found errors
+#   - World discovery problems
+#   - Cache issues
+#   - Path detection failures
+#   - Backup failures
+#
+# LICENSE:
+#   MIT License - See LICENSE file or README.md for full license text
+#
+# CREDITS:
+#   - Based on UI components from bash-ui.sh (https://github.com/RichLewis007/utils)
+#   - Uses fzf/gum for enhanced menu experience (with basic fallback)
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-BACKUP_SCRIPT="${SCRIPT_DIR}/minecraft-backup-via-adb.sh"
+BACKUP_SCRIPT="${SCRIPT_DIR}/minecraft-android-backup-via-usb.sh"
 
 # Configuration
 ADB_BIN="adb"
