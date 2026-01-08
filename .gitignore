@@ -1,10 +1,13 @@
-# Cache files
-*.cache
-/tmp/minecraft-worlds-cache.txt
+# local only files
+local/
 
 # Backup directories (user data, shouldn't be in repo)
 Minecraft-Worlds-Backups/
 ~/Downloads/Minecraft-Worlds-Backups/
+
+# Cache files
+*.cache
+/tmp/minecraft-worlds-cache.txt
 
 # macOS
 .DS_Store

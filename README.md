@@ -1,4 +1,8 @@
-# Minecraft-Android-Backup-Via-USB
+<div align="center">
+  <img src="images/minecraft-android-backup-heading.png" alt="Minecraft-Android-Backup-Via-USB">
+</div>
+
+## Minecraft Android Backup via USB
 
 **Author:** Rich Lewis - [GitHub @RichLewis007](https://github.com/RichLewis007)
 
@@ -31,6 +35,10 @@ The script provides a menu-driven interface that allows you to:
 4. **Format Choice**: Export as complete world folders or portable .mcworld files
 5. **Manage Backups**: View backup location, clear cache, and organize your backups
 
+<table>
+<tr>
+<td>
+
 ## Features
 
 - **Interactive menu system** - Supports fzf, gum, or basic select menu (auto-detects what's available)
@@ -46,6 +54,15 @@ The script provides a menu-driven interface that allows you to:
 - **Organized backup structure** - Timestamps and organized folders for easy management
 - **Cache management** - Caches world list (expires after 5 minutes) with manual clear option
 - **Finder integration** - Automatically opens backup location in Finder (macOS)
+
+</td>
+<td align="right">
+
+<img src="images/minecraft-backup-right-aligned.png" alt="Minecraft Backup" width="400px">
+
+</td>
+</tr>
+</table>
 
 ## Requirements
 
