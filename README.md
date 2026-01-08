@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="images/minecraft-android-backup-heading.png" alt="Minecraft-Android-Backup-Via-USB">
+  <img src="images/minecraft-android-backup-heading.jpg" alt="Minecraft-Android-Backup-Via-USB">
 </div>
 
 ## Minecraft Android Backup via USB
@@ -22,7 +22,7 @@ Android's Scoped Storage system protects app data directories (including Minecra
 - **Complete Backups**: Captures entire world directories including all chunks and metadata
 - **Multiple Formats**: Choose between raw world folders or portable .mcworld files
 
-<img align="left" width="400" src="images/minecraft-backup-left-aligned.png" alt="Minecraft Backup">
+<img align="left" width="400" src="images/minecraft-backup-left-aligned.jpg" alt="Minecraft Backup">
 
 - **User-Friendly**: Interactive menu system with searchable world lists
 - **Organized**: Automatic timestamping and folder organization
@@ -32,7 +32,7 @@ Android's Scoped Storage system protects app data directories (including Minecra
 
 The script provides a menu-driven interface that allows you to:
 
-<img align="right" width="400" src="images/minecraft-backup-right-aligned.png" alt="Minecraft Backup">
+<img align="right" width="400" src="images/minecraft-backup-right-aligned.jpg" alt="Minecraft Backup">
 
 1. **Discover Worlds**: Automatically finds all Minecraft worlds on your Android device
 2. **Display Information**: Shows actual world names (not just folder IDs) and sorts by most recently played
