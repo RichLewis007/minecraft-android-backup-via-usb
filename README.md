@@ -131,7 +131,7 @@ The script will:
 
 - Shows all Minecraft worlds from your device
 
-<img align="right" width="200" src="images/backup-minecraft-worlds.jpg" alt="Minecraft Backup">
+<img align="right" width="400" src="images/backup-minecraft-worlds.jpg" alt="Minecraft Backup">
 
 - Worlds are sorted by most recently accessed
 - Select a world to backup individually
