@@ -19,10 +19,11 @@ Android's Scoped Storage system protects app data directories (including Minecra
 **Key Benefits:**
 
 - **Access Protected Data**: Bypasses Android Scoped Storage restrictions
-- **Complete Backups**: Captures entire world directories including all chunks and metadata
-- **Multiple Formats**: Choose between raw world folders or portable .mcworld files
 
 <img align="left" width="400" src="images/minecraft-backup-left-aligned.jpg" alt="Minecraft Backup">
+
+- **Complete Backups**: Captures entire world directories including all chunks and metadata
+- **Multiple Formats**: Choose between raw world folders or portable .mcworld files
 
 - **User-Friendly**: Interactive menu system with searchable world lists
 - **Organized**: Automatic timestamping and folder organization
