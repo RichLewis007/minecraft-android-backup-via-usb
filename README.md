@@ -468,6 +468,15 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+## Support This Project
+
+If this tool has helped you protect your Minecraft worlds, please consider:
+
+- ⭐ **[Starring the repository](https://github.com/RichLewis007/minecraft-android-backup-via-usb)** on GitHub - It helps others discover this tool
+- 👤 **[Following @RichLewis007](https://github.com/RichLewis007)** - Stay updated on new projects and updates
+- 🐛 **[Reporting issues](https://github.com/RichLewis007/minecraft-android-backup-via-usb/issues)** - Help improve the tool by reporting bugs or suggesting features
+- 📢 **Sharing with friends** - If you know other Minecraft players who could benefit from this
+
 ## Credits
 
 **Minecraft Android Backup via USB** is free, open source software created by Rich Lewis. It's available under the MIT License, meaning you can use, modify, and distribute it freely.
