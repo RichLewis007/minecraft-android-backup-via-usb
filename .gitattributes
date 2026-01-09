@@ -3,4 +3,3 @@
 github-pages-website/ export-ignore
 .github/ export-ignore
 local/ export-ignore
-images/ export-ignore
