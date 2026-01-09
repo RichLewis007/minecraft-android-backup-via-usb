@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # minecraft-android-backup-via-usb.sh
 #
-# Version: 1.5
+# Version: 1.6
 # Author: Rich Lewis - GitHub @RichLewis007
 #
 # Minecraft Bedrock Android Backup Tool via USB (using ADB)
@@ -216,7 +216,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP_SCRIPT="${SCRIPT_DIR}/minecraft-android-backup-via-usb.sh"
 
 # Version
-SCRIPT_VERSION="1.5"
+SCRIPT_VERSION="1.6"
 
 # Configuration
 ADB_BIN="adb"
