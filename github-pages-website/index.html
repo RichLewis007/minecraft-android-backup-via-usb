@@ -1,451 +1,653 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Backup your Minecraft Bedrock Edition worlds from Android devices via USB. Protect your years of creative work - castles, cities, builds - from being lost forever.">
-    <title>Minecraft Android Backup via USB - Protect Your Worlds | Version 1.6</title>
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Backup your Minecraft Bedrock Edition worlds from Android devices via USB. Protect your years of creative work - castles, cities, builds - from being lost forever."
+    />
+    <title>
+      Minecraft Android Backup via USB - Protect Your Worlds | Version 1.6
+    </title>
+
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Minecraft Android Backup via USB - Protect Your Worlds">
-    <meta property="og:description" content="Backup your Minecraft Bedrock Edition worlds from Android devices. Protect your years of creative work from being lost forever.">
-    
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Minecraft Android Backup via USB - Protect Your Worlds"
+    />
+    <meta
+      property="og:description"
+      content="Backup your Minecraft Bedrock Edition worlds from Android devices. Protect your years of creative work from being lost forever."
+    />
+
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="Minecraft Android Backup via USB - Protect Your Worlds">
-    <meta property="twitter:description" content="Backup your Minecraft Bedrock Edition worlds from Android devices. Protect your years of creative work from being lost forever.">
-    
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:title"
+      content="Minecraft Android Backup via USB - Protect Your Worlds"
+    />
+    <meta
+      property="twitter:description"
+      content="Backup your Minecraft Bedrock Edition worlds from Android devices. Protect your years of creative work from being lost forever."
+    />
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }
-        
-        header img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      header {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      header img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        color: #2d3748;
+        font-size: 2.5em;
+        margin-bottom: 10px;
+      }
+
+      .version-badge {
+        display: inline-block;
+        background: #48bb78;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .subtitle {
+        color: #4a5568;
+        font-size: 1.2em;
+        margin-bottom: 30px;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 15px 30px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1em;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .btn-primary {
+        background: #4299e1;
+        color: white;
+      }
+
+      .btn-secondary {
+        background: #48bb78;
+        color: white;
+      }
+
+      .btn-github {
+        background: #2d3748;
+        color: white;
+      }
+
+      .btn-follow {
+        background: #ed8936;
+        color: white;
+      }
+
+      section {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      h2 {
+        color: #2d3748;
+        font-size: 2em;
+        margin-bottom: 20px;
+        border-bottom: 3px solid #667eea;
+        padding-bottom: 10px;
+      }
+
+      h3 {
+        color: #4a5568;
+        font-size: 1.5em;
+        margin: 30px 0 15px 0;
+      }
+
+      .warning-box {
+        background: #fff5cd;
+        border-left: 5px solid #f6ad55;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 30px 0;
+      }
+
+      .warning-box h3 {
+        color: #c05621;
+        margin-top: 0;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin: 30px 0;
+      }
+
+      .feature-card {
+        background: #f7fafc;
+        padding: 25px;
+        border-radius: 10px;
+        border: 2px solid #e2e8f0;
+        transition: transform 0.2s, border-color 0.2s;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+        border-color: #667eea;
+      }
+
+      .feature-card h4 {
+        color: #2d3748;
+        margin-bottom: 10px;
+        font-size: 1.2em;
+      }
+
+      ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      ul li {
+        padding: 10px 0;
+        padding-left: 30px;
+        position: relative;
+      }
+
+      ul li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #48bb78;
+        font-weight: bold;
+        font-size: 1.2em;
+      }
+
+      .image-section {
+        text-align: center;
+        margin: 30px 0;
+      }
+
+      .image-section img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .code-block {
+        background: #2d3748;
+        color: #e2e8f0;
+        padding: 20px;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 20px 0;
+        font-family: "Courier New", monospace;
+      }
+
+      .code-block code {
+        color: #e2e8f0;
+      }
+
+      footer {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 30px;
+        margin-top: 30px;
+        text-align: center;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      footer p {
+        margin: 10px 0;
+        color: #4a5568;
+      }
+
+      footer a {
+        color: #4299e1;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      .stats {
+        display: flex;
+        justify-content: space-around;
+        margin: 30px 0;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #667eea;
+      }
+
+      .stat-label {
+        color: #4a5568;
+        margin-top: 5px;
+      }
+
+      @media (max-width: 768px) {
         h1 {
-            color: #2d3748;
-            font-size: 2.5em;
-            margin-bottom: 10px;
+          font-size: 1.8em;
         }
-        
-        .version-badge {
-            display: inline-block;
-            background: #48bb78;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            margin-bottom: 20px;
-            font-weight: 600;
+
+        .container {
+          padding: 10px;
         }
-        
-        .subtitle {
-            color: #4a5568;
-            font-size: 1.2em;
-            margin-bottom: 30px;
+
+        section,
+        header {
+          padding: 20px;
         }
-        
+
         .cta-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 20px;
+          flex-direction: column;
         }
-        
+
         .btn {
-            display: inline-block;
-            padding: 15px 30px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1em;
-            transition: transform 0.2s, box-shadow 0.2s;
+          width: 100%;
+          text-align: center;
         }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        .btn-primary {
-            background: #4299e1;
-            color: white;
-        }
-        
-        .btn-secondary {
-            background: #48bb78;
-            color: white;
-        }
-        
-        .btn-github {
-            background: #2d3748;
-            color: white;
-        }
-        
-        .btn-follow {
-            background: #ed8936;
-            color: white;
-        }
-        
-        section {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-        }
-        
-        h2 {
-            color: #2d3748;
-            font-size: 2em;
-            margin-bottom: 20px;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
-        }
-        
-        h3 {
-            color: #4a5568;
-            font-size: 1.5em;
-            margin: 30px 0 15px 0;
-        }
-        
-        .warning-box {
-            background: #fff5cd;
-            border-left: 5px solid #f6ad55;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 30px 0;
-        }
-        
-        .warning-box h3 {
-            color: #c05621;
-            margin-top: 0;
-        }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-        
-        .feature-card {
-            background: #f7fafc;
-            padding: 25px;
-            border-radius: 10px;
-            border: 2px solid #e2e8f0;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: #667eea;
-        }
-        
-        .feature-card h4 {
-            color: #2d3748;
-            margin-bottom: 10px;
-            font-size: 1.2em;
-        }
-        
-        ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        ul li {
-            padding: 10px 0;
-            padding-left: 30px;
-            position: relative;
-        }
-        
-        ul li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #48bb78;
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-        
-        .image-section {
-            text-align: center;
-            margin: 30px 0;
-        }
-        
-        .image-section img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        .code-block {
-            background: #2d3748;
-            color: #e2e8f0;
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 20px 0;
-            font-family: 'Courier New', monospace;
-        }
-        
-        .code-block code {
-            color: #e2e8f0;
-        }
-        
-        footer {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            margin-top: 30px;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-        }
-        
-        footer p {
-            margin: 10px 0;
-            color: #4a5568;
-        }
-        
-        footer a {
-            color: #4299e1;
-            text-decoration: none;
-        }
-        
-        footer a:hover {
-            text-decoration: underline;
-        }
-        
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            margin: 30px 0;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #667eea;
-        }
-        
-        .stat-label {
-            color: #4a5568;
-            margin-top: 5px;
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 1.8em;
-            }
-            
-            .container {
-                padding: 10px;
-            }
-            
-            section, header {
-                padding: 20px;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-            }
-            
-            .btn {
-                width: 100%;
-                text-align: center;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <img src="images/minecraft-android-backup-heading.jpg" alt="Minecraft Android Backup via USB">
-            <h1>Minecraft Android Backup via USB</h1>
-            <span class="version-badge">Version 1.6</span>
-            <p class="subtitle">Protect your Minecraft worlds from being lost forever</p>
-            
-            <div class="cta-buttons">
-                <a href="https://github.com/RichLewis007/minecraft-android-backup-via-usb" class="btn btn-primary" target="_blank">⭐ Star on GitHub</a>
-                <a href="https://github.com/RichLewis007" class="btn btn-follow" target="_blank">👤 Follow @RichLewis007</a>
-                <a href="https://github.com/RichLewis007/minecraft-android-backup-via-usb/blob/main/README.md" class="btn btn-secondary" target="_blank">📖 View Documentation</a>
-                <a href="https://github.com/RichLewis007/minecraft-android-backup-via-usb/releases/tag/v1.6" class="btn btn-github" target="_blank">⬇️ Download</a>
-            </div>
-        </header>
+      <header>
+        <img
+          src="images/minecraft-android-backup-heading.jpg"
+          alt="Minecraft Android Backup via USB"
+        />
+        <h1>Minecraft Android Backup via USB</h1>
+        <span class="version-badge">Version 1.6</span>
+        <p class="subtitle">
+          Protect your Minecraft worlds from being lost forever
+        </p>
+        <p style="color: #4a5568; font-size: 1em; margin-top: 15px">
+          <strong>Free Open Source Software</strong> created by
+          <a
+            href="https://github.com/RichLewis007"
+            target="_blank"
+            style="color: #4299e1; text-decoration: none"
+            >Rich Lewis</a
+          >
+        </p>
 
-        <section>
-            <div class="warning-box">
-                <h3>⚠️ Don't Risk Losing Your Minecraft Worlds</h3>
-                <p><strong>Your Minecraft worlds are stored on your Android device and are at risk of being lost forever if:</strong></p>
-                <ul>
-                    <li>You lose or break your phone or tablet</li>
-                    <li>You need to sell or give away your device</li>
-                    <li>You reset your device to factory settings</li>
-                    <li>Your device gets corrupted or damaged</li>
-                    <li>You accidentally delete the Minecraft app</li>
-                </ul>
-                <p><strong>If any of these happen, you could lose years of creative work:</strong> Your castles, cities, bridges, houses, redstone contraptions, and everything else you've built in your worlds - gone forever, never to be seen or played in again.</p>
-            </div>
+        <div class="cta-buttons">
+          <a
+            href="https://github.com/RichLewis007/minecraft-android-backup-via-usb"
+            class="btn btn-primary"
+            target="_blank"
+            >⭐ Star on GitHub</a
+          >
+          <a
+            href="https://github.com/RichLewis007"
+            class="btn btn-follow"
+            target="_blank"
+            >👤 Follow @RichLewis007</a
+          >
+          <a
+            href="https://github.com/RichLewis007/minecraft-android-backup-via-usb/blob/main/README.md"
+            class="btn btn-secondary"
+            target="_blank"
+            >📖 View Documentation</a
+          >
+          <a
+            href="https://github.com/RichLewis007/minecraft-android-backup-via-usb/releases/tag/v1.6"
+            class="btn btn-github"
+            target="_blank"
+            >⬇️ Download</a
+          >
+        </div>
+      </header>
 
-            <h2>What This Tool Does</h2>
-            <p>Minecraft Android Backup via USB is a simple, reliable tool that helps you backup your Minecraft Bedrock Edition worlds from your Android device to your computer via USB connection. It's designed to be straightforward and accessible, even if you're not super technical.</p>
+      <section>
+        <div class="warning-box">
+          <h3>⚠️ Don't Risk Losing Your Minecraft Worlds</h3>
+          <p>
+            <strong
+              >Your Minecraft worlds are stored on your Android device and are
+              at risk of being lost forever if:</strong
+            >
+          </p>
+          <ul>
+            <li>You lose or break your phone or tablet</li>
+            <li>You need to sell or give away your device</li>
+            <li>You reset your device to factory settings</li>
+            <li>Your device gets corrupted or damaged</li>
+            <li>You accidentally delete the Minecraft app</li>
+          </ul>
+          <p>
+            <strong
+              >If any of these happen, you could lose years of creative
+              work:</strong
+            >
+            Your castles, cities, bridges, houses, redstone contraptions, and
+            everything else you've built in your worlds - gone forever, never to
+            be seen or played in again.
+          </p>
+        </div>
 
-            <div class="image-section">
-                <img src="images/minecraft-backup-left-aligned.jpg" alt="Minecraft backup process" style="max-width: 600px;">
-            </div>
+        <h2>What This Tool Does</h2>
+        <p>
+          Minecraft Android Backup via USB is a simple, reliable tool that helps
+          you backup your Minecraft Bedrock Edition worlds from your Android
+          device to your computer via USB connection. It's designed to be
+          straightforward and accessible, even if you're not super technical.
+        </p>
 
-            <p><strong>The reality is:</strong> Android protects Minecraft world files in a way that makes them nearly impossible to backup using normal methods. You can't just browse to these folders with a file manager. This tool uses ADB (Android Debug Bridge), which is the standard way to access protected app data on Android devices.</p>
-        </section>
+        <div class="image-section">
+          <img
+            src="images/minecraft-backup-left-aligned.jpg"
+            alt="Minecraft backup process"
+            style="max-width: 600px"
+          />
+        </div>
 
-        <section>
-            <h2>Key Features</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h4>🔄 Complete Backups</h4>
-                    <p>Backs up entire world directories including all your builds, chunks, metadata, resource packs, and behavior packs. Nothing is left behind.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <h4>📦 Two Backup Formats</h4>
-                    <p>Choose between full world folders (for advanced users) or portable .mcworld files (easy to share and restore).</p>
-                </div>
-                
-                <div class="feature-card">
-                    <h4>🎯 Selective Backups</h4>
-                    <p>Backup individual worlds or all worlds at once. Select exactly what you want to preserve.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <h4>📱 Shows Real Names</h4>
-                    <p>Displays your actual world names (not just folder IDs), sorted by most recently played for easy selection.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <h4>⚡ Fast & Reliable</h4>
-                    <p>Direct USB connection ensures fast, reliable data transfer. No cloud uploads, no internet required.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <h4>🖥️ Easy to Use</h4>
-                    <p>Interactive menu system guides you through the process. Clear instructions make it accessible for everyone.</p>
-                </div>
-            </div>
-        </section>
+        <p>
+          <strong>The reality is:</strong> Android protects Minecraft world
+          files in a way that makes them nearly impossible to backup using
+          normal methods. You can't just browse to these folders with a file
+          manager. This tool uses ADB (Android Debug Bridge), which is the
+          standard way to access protected app data on Android devices.
+        </p>
+      </section>
 
-        <section>
-            <h2>Why This Matters</h2>
-            <p>Minecraft worlds represent hours, weeks, months, or even years of creative work and exploration. Whether you've built elaborate castles, designed complex redstone machines, or simply created a cozy home base, these creations are valuable to you.</p>
-
-            <div class="image-section">
-                <img src="images/minecraft-backup-right-aligned.jpg" alt="Minecraft world backup" style="max-width: 600px;">
-            </div>
-
-            <p><strong>The simple truth:</strong> If your Android device is lost, reset, or damaged, there's no built-in way to recover your Minecraft worlds. They're stored in protected app directories that regular backup methods can't access. This tool fills that gap, giving you a way to preserve your work before something goes wrong.</p>
-
-            <p>It's better to backup now than to wish you had later. Setting up a backup takes just a few minutes, and then you'll have peace of mind knowing your worlds are safe on your computer.</p>
-        </section>
-
-        <section>
-            <h2>How It Works</h2>
-            <ol style="padding-left: 30px; line-height: 2;">
-                <li><strong>Connect your Android device</strong> to your computer via USB cable</li>
-                <li><strong>Enable USB Debugging</strong> on your Android device (one-time setup)</li>
-                <li><strong>Run the script</strong> on your computer</li>
-                <li><strong>Select your worlds</strong> from an interactive menu</li>
-                <li><strong>Choose backup format</strong> (world folders or .mcworld files)</li>
-                <li><strong>Your worlds are saved</strong> to your computer, safe and secure</li>
-            </ol>
-
-            <div class="image-section">
-                <img src="images/backup-minecraft-worlds.jpg" alt="Backup Minecraft worlds" style="max-width: 700px;">
-            </div>
-
-            <p><strong>Requirements:</strong> You'll need ADB (Android Debug Bridge) installed on your computer and USB Debugging enabled on your Android device. Detailed setup instructions are available in the <a href="https://github.com/RichLewis007/minecraft-android-backup-via-usb/blob/main/README.md" target="_blank">documentation</a>.</p>
-        </section>
-
-        <section>
-            <h2>Get Started</h2>
-            <p>Ready to protect your Minecraft worlds? Here's how to get started:</p>
-            
-            <div class="code-block">
-                <code>
-# 1. Clone the repository<br>
-git clone https://github.com/RichLewis007/minecraft-android-backup-via-usb.git<br>
-<br>
-# 2. Navigate to the directory<br>
-cd minecraft-android-backup-via-usb<br>
-<br>
-# 3. Make the script executable<br>
-chmod +x minecraft-android-backup-via-usb.sh<br>
-<br>
-# 4. Run the script<br>
-./minecraft-android-backup-via-usb.sh
-                </code>
-            </div>
-
-            <p>For complete installation instructions, including how to set up ADB and enable USB Debugging, see the <a href="https://github.com/RichLewis007/minecraft-android-backup-via-usb/blob/main/README.md" target="_blank">full documentation</a>.</p>
-        </section>
-
-        <section>
-            <h2>Support This Project</h2>
-            <p>If this tool has helped you protect your Minecraft worlds, please consider:</p>
-            <ul style="max-width: 600px; margin: 20px auto;">
-                <li>⭐ <strong>Starring the repository</strong> on GitHub - It helps others discover this tool</li>
-                <li>👤 <strong>Following @RichLewis007</strong> - Stay updated on new projects and updates</li>
-                <li>🐛 <strong>Reporting issues</strong> - Help improve the tool by reporting bugs or suggesting features</li>
-                <li>📢 <strong>Sharing with friends</strong> - If you know other Minecraft players who could benefit from this</li>
-            </ul>
-        </section>
-
-        <footer>
-            <p><strong>Minecraft Android Backup via USB</strong> | Version 1.6</p>
-            <p>Created by <a href="https://github.com/RichLewis007" target="_blank">Rich Lewis (@RichLewis007)</a></p>
-            <p>Licensed under <a href="https://github.com/RichLewis007/minecraft-android-backup-via-usb/blob/main/LICENSE" target="_blank">MIT License</a></p>
+      <section>
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h4>🔄 Complete Backups</h4>
             <p>
-                <a href="https://github.com/RichLewis007/minecraft-android-backup-via-usb" target="_blank">GitHub Repository</a> |
-                <a href="https://github.com/RichLewis007/minecraft-android-backup-via-usb/blob/main/README.md" target="_blank">Documentation</a> |
-                <a href="https://github.com/RichLewis007" target="_blank">Author Profile</a>
+              Backs up entire world directories including all your builds,
+              chunks, metadata, resource packs, and behavior packs. Nothing is
+              left behind.
             </p>
-        </footer>
+          </div>
+
+          <div class="feature-card">
+            <h4>📦 Two Backup Formats</h4>
+            <p>
+              Choose between full world folders (for advanced users) or portable
+              .mcworld files (easy to share and restore).
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <h4>🎯 Selective Backups</h4>
+            <p>
+              Backup individual worlds or all worlds at once. Select exactly
+              what you want to preserve.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <h4>📱 Shows Real Names</h4>
+            <p>
+              Displays your actual world names (not just folder IDs), sorted by
+              most recently played for easy selection.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <h4>⚡ Fast & Reliable</h4>
+            <p>
+              Direct USB connection ensures fast, reliable data transfer. No
+              cloud uploads, no internet required.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <h4>🖥️ Easy to Use</h4>
+            <p>
+              Interactive menu system guides you through the process. Clear
+              instructions make it accessible for everyone.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Why This Matters</h2>
+        <p>
+          Minecraft worlds represent hours, weeks, months, or even years of
+          creative work and exploration. Whether you've built elaborate castles,
+          designed complex redstone machines, or simply created a cozy home
+          base, these creations are valuable to you.
+        </p>
+
+        <div class="image-section">
+          <img
+            src="images/minecraft-backup-right-aligned.jpg"
+            alt="Minecraft world backup"
+            style="max-width: 600px"
+          />
+        </div>
+
+        <p>
+          <strong>The simple truth:</strong> If your Android device is lost,
+          reset, or damaged, there's no built-in way to recover your Minecraft
+          worlds. They're stored in protected app directories that regular
+          backup methods can't access. This tool fills that gap, giving you a
+          way to preserve your work before something goes wrong.
+        </p>
+
+        <p>
+          It's better to backup now than to wish you had later. Setting up a
+          backup takes just a few minutes, and then you'll have peace of mind
+          knowing your worlds are safe on your computer.
+        </p>
+      </section>
+
+      <section>
+        <h2>How It Works</h2>
+        <ol style="padding-left: 30px; line-height: 2">
+          <li>
+            <strong>Connect your Android device</strong> to your computer via
+            USB cable
+          </li>
+          <li>
+            <strong>Enable USB Debugging</strong> on your Android device
+            (one-time setup)
+          </li>
+          <li><strong>Run the script</strong> on your computer</li>
+          <li><strong>Select your worlds</strong> from an interactive menu</li>
+          <li>
+            <strong>Choose backup format</strong> (world folders or .mcworld
+            files)
+          </li>
+          <li>
+            <strong>Your worlds are saved</strong> to your computer, safe and
+            secure
+          </li>
+        </ol>
+
+        <div class="image-section">
+          <img
+            src="images/backup-minecraft-worlds.jpg"
+            alt="Backup Minecraft worlds"
+            style="max-width: 700px"
+          />
+        </div>
+
+        <p>
+          <strong>Requirements:</strong> You'll need ADB (Android Debug Bridge)
+          installed on your computer and USB Debugging enabled on your Android
+          device. Detailed setup instructions are available in the
+          <a
+            href="https://github.com/RichLewis007/minecraft-android-backup-via-usb/blob/main/README.md"
+            target="_blank"
+            >documentation</a
+          >.
+        </p>
+      </section>
+
+      <section>
+        <h2>Get Started</h2>
+        <p>
+          Ready to protect your Minecraft worlds? Here's how to get started:
+        </p>
+
+        <div class="code-block">
+          <code>
+            # 1. Clone the repository<br />
+            git clone
+            https://github.com/RichLewis007/minecraft-android-backup-via-usb.git<br />
+            <br />
+            # 2. Navigate to the directory<br />
+            cd minecraft-android-backup-via-usb<br />
+            <br />
+            # 3. Make the script executable<br />
+            chmod +x minecraft-android-backup-via-usb.sh<br />
+            <br />
+            # 4. Run the script<br />
+            ./minecraft-android-backup-via-usb.sh
+          </code>
+        </div>
+
+        <p>
+          For complete installation instructions, including how to set up ADB
+          and enable USB Debugging, see the
+          <a
+            href="https://github.com/RichLewis007/minecraft-android-backup-via-usb/blob/main/README.md"
+            target="_blank"
+            >full documentation</a
+          >.
+        </p>
+      </section>
+
+      <section>
+        <h2>About This Project</h2>
+        <p>
+          <strong>Minecraft Android Backup via USB</strong> is free, open source
+          software created by Rich Lewis. It's available under the MIT License,
+          meaning you can use, modify, and distribute it freely without any
+          restrictions.
+        </p>
+
+        <h2>Support This Project</h2>
+        <p>
+          If this tool has helped you protect your Minecraft worlds, please
+          consider:
+        </p>
+        <ul style="max-width: 600px; margin: 20px auto">
+          <li>
+            ⭐ <strong>Starring the repository</strong> on GitHub - It helps
+            others discover this tool
+          </li>
+          <li>
+            👤 <strong>Following @RichLewis007</strong> - Stay updated on new
+            projects and updates
+          </li>
+          <li>
+            🐛 <strong>Reporting issues</strong> - Help improve the tool by
+            reporting bugs or suggesting features
+          </li>
+          <li>
+            📢 <strong>Sharing with friends</strong> - If you know other
+            Minecraft players who could benefit from this
+          </li>
+        </ul>
+      </section>
+
+      <footer>
+        <p><strong>Minecraft Android Backup via USB</strong> | Version 1.6</p>
+        <p>
+          <strong>Free Open Source Software</strong> created by
+          <a href="https://github.com/RichLewis007" target="_blank"
+            >Rich Lewis (@RichLewis007)</a
+          >
+        </p>
+        <p>
+          Licensed under
+          <a
+            href="https://github.com/RichLewis007/minecraft-android-backup-via-usb/blob/main/LICENSE"
+            target="_blank"
+            >MIT License</a
+          >
+        </p>
+        <p>
+          <a
+            href="https://github.com/RichLewis007/minecraft-android-backup-via-usb"
+            target="_blank"
+            >GitHub Repository</a
+          >
+          |
+          <a
+            href="https://github.com/RichLewis007/minecraft-android-backup-via-usb/blob/main/README.md"
+            target="_blank"
+            >Documentation</a
+          >
+          |
+          <a href="https://github.com/RichLewis007" target="_blank"
+            >Author Profile</a
+          >
+        </p>
+      </footer>
     </div>
-</body>
+  </body>
 </html>

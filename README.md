@@ -6,10 +6,11 @@
 
 **Version:** 1.6
 **Author:** Rich Lewis - [GitHub @RichLewis007](https://github.com/RichLewis007)
+**License:** Free Open Source Software (MIT License)
 
 > 🌐 **[View Project Website](https://richlewis007.github.io/minecraft-android-backup-via-usb/)** | 📖 [Documentation](#overview) | ⭐ [Star on GitHub](https://github.com/RichLewis007/minecraft-android-backup-via-usb)
 
-Easily backup your complete Minecraft Bedrock Edition worlds from your Android device to your computer via USB connection. This script uses ADB (Android Debug Bridge) to access protected app data directories and provides a user-friendly Text User Interface (TUI) for managing your Minecraft world backups. Worlds can be backed up as full folders or as .mcworld files.
+**Minecraft Android Backup via USB** is free, open source software created by Rich Lewis. Easily backup your complete Minecraft Bedrock Edition worlds from your Android device to your computer via USB connection. This script uses ADB (Android Debug Bridge) to access protected app data directories and provides a user-friendly Text User Interface (TUI) for managing your Minecraft world backups. Worlds can be backed up as full folders or as .mcworld files.
 
 ## Overview
 
@@ -468,6 +469,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ## Credits
+
+**Minecraft Android Backup via USB** is free, open source software created by Rich Lewis. It's available under the MIT License, meaning you can use, modify, and distribute it freely.
 
 - Based on UI components from [bash-ui.sh](https://github.com/RichLewis007/utils)
 - Uses fzf/gum for enhanced menu experience (with basic fallback)
