@@ -1,0 +1,6 @@
+# Exclude GitHub Pages website and development files from releases
+# These files/folders will NOT be included in GitHub release archives
+github-pages-website/ export-ignore
+.github/ export-ignore
+local/ export-ignore
+images/ export-ignore
