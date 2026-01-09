@@ -4,7 +4,7 @@
 
 ## Minecraft Android Backup via USB
 
-**Version:** 1.2
+**Version:** 1.4
 **Author:** Rich Lewis - [GitHub @RichLewis007](https://github.com/RichLewis007)
 
 > 🌐 **[View Project Website](https://richlewis007.github.io/minecraft-android-backup-via-usb/)** | 📖 [Documentation](#overview) | ⭐ [Star on GitHub](https://github.com/RichLewis007/minecraft-android-backup-via-usb)
