@@ -513,7 +513,11 @@ get_world_list() {
   # Parse the output line by line - convert to array and process
   # Split by newlines and process each
   local count=0
-  mapfile -t world_lines < <(printf '%s\n' "$worlds_raw")
+  # mapfile requires bash 4+; macOS ships bash 3.2, so use a read loop instead
+  local world_lines=() line
+  while IFS= read -r line; do
+    world_lines+=("$line")
+  done < <(printf '%s\n' "$worlds_raw")
   
   log_info "Reading world names (${#world_lines[@]} worlds)..."
   for wid in "${world_lines[@]}"; do
@@ -570,7 +574,9 @@ get_world_list() {
     
     # Sort by access time (descending) - most recent first
     local sorted_pairs=()
-    mapfile -t sorted_pairs < <(printf '%s\n' "${temp_array[@]}" | sort -t: -k1 -rn)
+    while IFS= read -r line; do
+      sorted_pairs+=("$line")
+    done < <(printf '%s\n' "${temp_array[@]}" | sort -t: -k1 -rn)
     
     local sorted_world_list=()
     local sorted_world_names=()
